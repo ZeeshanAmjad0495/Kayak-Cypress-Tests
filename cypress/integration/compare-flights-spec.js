@@ -2,10 +2,11 @@ import FlightsPage from '../page-objects/flights-page.js';
 
 const flightsPage = new FlightsPage();
 
+before(() => {
+    flightsPage.visitFlightsPage();
+})
+
 describe('Search for a flight', function () {
-    it('visit kayak.com/flights', function () {
-        flightsPage.visitFlightsPage();
-    });
 
     it('type origin', function () {
         flightsPage.typeOrigin('New York');
@@ -48,3 +49,7 @@ describe('Search for a flight', function () {
         flightsPage.clickSearchButton();
     });
 });
+
+describe('Compare rates', function () {
+
+})

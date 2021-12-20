@@ -65,17 +65,19 @@ class FlightsPage {
         )
 
     }
-    openDepartureCalendar(date) {
-        cy.get('.cQtq.nth-child(1)').click()
-        wait(2000)
+    openCalendar(date) {
+        cy.get(':nth-child(1) > .cQtq-date').click()
+        cy.wait(2000)
     }
-    openArrivalCalendar(date) {
-        cy.get('.cQtq.nth-child(3)').click()
-        wait(2000)
+
+    selectDateRange({ month, arrivalDate, departureDate }) {
+        cy.get(`[data-month=${month}] > .onx_-days > [aria-label="${departureDate}"]`).click()
+        cy.get(`[data-month=${month}] > .onx_-days > [aria-label="${arrivalDate}"]`).click()
     }
+
     clickSearchButton() {
-        cy.get('.Iqt3').click()
-        wait(3000)
+        cy.get('.zEiP-submit > .Iqt3').click()
+        cy.wait(5000)
     }
     selectBest() {
         cy.get('#xySY-bestflight_aTab', { timeout: 5000 }).click()

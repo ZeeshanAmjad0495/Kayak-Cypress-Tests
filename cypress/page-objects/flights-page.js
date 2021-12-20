@@ -77,36 +77,42 @@ class FlightsPage {
 
     clickSearchButton() {
         cy.get('.zEiP-submit > .Iqt3').click()
-        cy.wait(5000)
+        cy.wait(10000)
     }
-    selectBest() {
-        cy.get('#xySY-bestflight_aTab', { timeout: 5000 }).click()
+    isBestVisible() {
+        cy.get('span[class="_iM-"]').should('be.visible').and('contain', 'Best')
     }
-    selectCheapest() {
-        cy.get('#xySY-price_aTab', { timeout: 5000 }).click()
+    isCheapestVisible() {
+        cy.get('span[class="_iM-"]').should('be.visible').and('contain', 'Cheapest')
     }
-    selectQuickest() {
-        cy.get('#xySY-duration_aTab', { timeout: 5000 }).click()
+    isQuickestVisible() {
+        cy.get('span[class="_iM-"]').should('be.visible').and('contain', 'Quickest')
     }
     getBestPrice() {
-        cy.get('#xySY-bestflight_aTab ~ span').then(($el) => {
+        cy.get('.js-price').then(($el) => {
             const price = $el.text()
             return price
         })
     }
     getCheapestPrice() {
-        cy.get('#xySY-price_aTab ~ span ').then(($el) => {
+        cy.get('#ZxNX-price_aTab > ._iKN > .js-sort-tab-row > :nth-child(1) > ._id7 > .js-label').then(($el) => {
             const price = $el.text()
             return price
         })
     }
     getQuickestDurationPrice() {
-        cy.get('#xySY-duration_aTab ~ span ').then(($el) => {
+        cy.get('#Tevn-duration_aTab > ._iKN > .js-sort-tab-row > :nth-child(1) > ._id7 > .js-label').then(($el) => {
             const price = $el.text()
             return price
         })
     }
-
+    toggleFlightType(type) {
+        cy.get('.zcIg > :nth-child(1) > .wIIH > .wIIH-handle > .wIIH-mod-alignment-left').click()
+        cy.get(`.QHyi > [aria-label="${type}"]`).should('contain', type).click()
+    }
+    countSearchInputs(type) {
+        cy.get('.zEiP').children().should('have.class', 'olmX-multicityContainer')
+    }
 }
 
 export default FlightsPage

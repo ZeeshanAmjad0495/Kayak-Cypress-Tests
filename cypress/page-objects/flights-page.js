@@ -8,18 +8,23 @@ class FlightsPage {
     visitFlightsPage() {
         cy.visit('/')
     }
+    clearOriginInput() {
+        cy.get('.vvTc-item-icon').click({ force: true, multiple: true })
+        cy.wait(2000)
+    }
 
     typeOrigin(origin) {
-        cy.get('.vvTc-item-close').click({ multiple: true })
+        this.clearOriginInput()
         cy.get('.zEiP-origin > .d_E3 > .lNCO').should('have.text', 'From?').click({ force: true })
         cy.get('.k_my-input').type(origin)
         cy.wait(3000)
     }
 
     selectSingleOrigin(origin) {
-        cy.get('.QHyi-mod-focused')
-            .should('contain', origin)
-            .click({ force: true })
+        cy.get('.QHyi')
+            .children()
+            .contains(origin)
+            .click({ force: true, multiple: true })
     }
 
     typeDestination(destination) {
@@ -29,7 +34,7 @@ class FlightsPage {
     }
 
     selectSingleDestination(destination) {
-        cy.get('.QHyi-mod-focused')
+        cy.get('.QHyi')
             .should('contain', destination)
             .click({ force: true })
     }
@@ -110,9 +115,14 @@ class FlightsPage {
         cy.get('.zcIg > :nth-child(1) > .wIIH > .wIIH-handle > .wIIH-mod-alignment-left').click()
         cy.get(`.QHyi > [aria-label="${type}"]`).should('contain', type).click()
     }
-    countSearchInputs(type) {
-        cy.get('.zEiP').children().should('have.class', 'olmX-multicityContainer')
+    countMultiCitySearchInputs() {
+        cy.get('.olmX-multicityContainer').children().should('have.class', 'zEiP-formBody').should('have.length', 4)
     }
+    searchAirportByCodeOrPartialName(code, selection) {
+        this.typeOrigin(code)
+        this.selectSingleOrigin(selection)
+    }
+
 }
 
 export default FlightsPage

@@ -1,9 +1,11 @@
-
-
 const { _, $ } = Cypress
 
 
 class FlightsPage {
+
+    jsonToArray(json) {
+        return Object.keys(json).map(key => json[key])
+    }
 
     visitFlightsPage() {
         cy.visit('/')
@@ -16,28 +18,30 @@ class FlightsPage {
     typeOrigin(origin) {
         this.clearOriginInput()
         cy.get('.zEiP-origin > .d_E3 > .lNCO').should('have.text', 'From?').click({ force: true })
-        cy.get('.k_my-input').type(origin)
+        cy.get('.k_my-input').type(origin, { force: true })
         cy.wait(3000)
     }
 
     selectSingleOrigin(origin) {
+        let re = new RegExp(`\\b${origin}\\b`, 'gi')
         cy.get('.QHyi')
             .children()
-            .contains(origin)
+            .contains(re)
             .click({ force: true, multiple: true })
     }
 
     typeDestination(destination) {
-        cy.get('.zEiP-destination > .d_E3 > .lNCO').should('have.text', 'To?').click({ force: true })
+        cy.get('.zEiP-destination > .d_E3 > .lNCO').contains('To?').click({ force: true })
         cy.get('.k_my-input').type(destination)
         cy.wait(3000)
     }
 
     selectSingleDestination(destination) {
+        let re = new RegExp(`\\b${destination}\\b`, 'gi')
         cy.get('.QHyi')
             .children()
-            .contains(destination)
-            .click({ force: true })
+            .contains(re)
+            .click({ force: true, multiple: true })
     }
 
     setPassengers({ Adults, Seniors, Youth, Child, SeatInfant, LapInfant }) {
@@ -77,11 +81,12 @@ class FlightsPage {
     }
 
     selectDateRange({ month, arrivalDate, departureDate }) {
-        cy.get(`[data-month=${month}] > .onx_-days > [aria-label="${departureDate}"]`).click()
-        cy.get(`[data-month=${month}] > .onx_-days > [aria-label="${arrivalDate}"]`).click()
+        cy.get(`[aria-label="${departureDate}"]`).click()
+        cy.get(`[aria-label="${arrivalDate}"]`).click()
     }
 
     clickSearchButton() {
+        cy.get('body').type('{esc}')
         cy.get('.zEiP-submit > .Iqt3').click()
         cy.wait(10000)
     }

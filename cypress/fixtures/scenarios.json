@@ -1,69 +1,69 @@
 {
-  "Scenario 1" : {
-  "Origin Input": "Hartsfield-Jackson Atlanta International Airport",
-  "Origin Selection": "Hartsfield-Jackson Atlanta International Airport",
-  "Destination Input": "Dubai International Airport (DXB)",
-  "Destination Selection": "Dubai International Airport (DXB)",
+  "Scenario1" : {
+  "OriginInput": "Hartsfield-Jackson Atlanta International Airport",
+  "OriginSelection": "Hartsfield-Jackson",
+  "DestinationInput": "Dubai, United Arab Emirates",
+  "DestinationSelection": "Dubai, United Arab Emirates",
   "Passengers": {
     "Adults": 4,
     "Seniors": 0,
     "Youth": 0,
     "Child": 0,
-    "Seat Infant": 0,
-    "Lap Infant": 0
+    "SeatInfant": 0,
+    "LapInfant": 0
   },
-  "Departure": "04/01/2022",
-  "Arrival": "07/01/2022"
+  "Departure": "January, 4 2022",
+  "Arrival": "January, 7 2022"
 },
 
-"Scenario 2": {
-  "Origin Input": "Tokyo Ha",
-  "Origin Selection": "Tokyo Haneda Airport (HND)",
-  "Destination Input": "Paris Charl",
-  "Destination Selection": "Paris Charles de Gaulle Airport (CDG)",
+"Scenario2": {
+  "OriginInput": "Tokyo Ha",
+  "OriginSelection": "Haneda",
+  "DestinationInput": "Paris Charl",
+  "DestinationSelection": "Charles de Gaulle",
    "Passengers": {
     "Adults": 2,
     "Seniors": 1,
     "Youth": 1,
     "Child": 1,
-    "Seat Infant": 0,
-    "Lap Infant": 0
+    "SeatInfant": 0,
+    "LapInfant": 0
   },
-  "Departure": "04/01/2022",
-  "Arrival": "07/01/2022"
+ "Departure": "January, 4 2022",
+  "Arrival": "January, 7 2022"
 
 },
-"Scenario 3": {
-  "Origin Input": "AMS",
-  "Origin Selection": "Amsterdam Airport Schiphol (AMS)",
-  "Destination Input": "CAN",
-  "Destination Selection": "Guangzhou China (CAN)",
+"Scenario3": {
+  "OriginInput": "AMS",
+  "OriginSelection": "Schiphol (AMS)",
+  "DestinationInput": "CAN",
+  "DestinationSelection": "Guangzhou, China (CAN)",
    "Passengers": {
     "Adults": 2,
     "Seniors": 2,
     "Youth": 2,
     "Child": 2,
-    "Seat Infant": 0,
-    "Lap Infant": 0
+    "SeatInfant": 0,
+    "LapInfant": 0
   },
-  "Departure": "04/01/2022",
-  "Arrival": "07/01/2022"
+  "Departure": "January, 4 2022",
+  "Arrival": "January, 7 2022"
 
 },
-"Scenario 4": {
-  "Origin Input": "Frankfurt Airport",
-  "Origin Selection": "Frakfurt am Main, German (HHN)",
-  "Destination Input": "Berlin",
-  "Destination Selection": "Schonefeld (SXF)",
+"Scenario4": {
+  "OriginInput": "Frankfurt Airport",
+  "OriginSelection": "Frakfurt am Main, Germany (HHN)",
+  "DestinationInput": "Berlin",
+  "DestinationSelection": "Berlin, Germany",
    "Passengers": {
     "Adults": 4,
     "Seniors": 0,
     "Youth": 0,
     "Child": 1,
-    "Seat Infant": 1,
-    "Lap Infant": 1
+    "SeatInfant": 1,
+    "LapInfant": 1
   },
-  "Departure": "04/01/2022",
-  "Arrival": "07/01/2022"
+  "Departure": "January, 4 2022",
+  "Arrival": "January, 7 2022"
 }
 }

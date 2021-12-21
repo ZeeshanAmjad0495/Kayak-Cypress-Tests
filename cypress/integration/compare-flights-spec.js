@@ -1,55 +1,63 @@
 import FlightsPage from '../page-objects/flights-page.js';
+import scenarios from '../fixtures/scenarios.json'
+
 
 const flightsPage = new FlightsPage();
+
+const flightsData = flightsPage.jsonToArray(scenarios);
 
 
 before(() => {
     flightsPage.visitFlightsPage();
 })
 
-describe('Search for a flight', function () {
-
-    it('type origin', function () {
-        flightsPage.typeOrigin('New York');
-    });
-
-    it('select single origin', function () {
-        flightsPage.selectSingleOrigin('New York');
-    })
-
-    it('type destination', function () {
-        flightsPage.typeDestination('Philadelphia');
-    });
-
-    it('select single destination', function () {
-        flightsPage.selectSingleDestination('Philadelphia');
-    });
-
-    it('set passengers', function () {
-        flightsPage.setPassengers({
-            Adults: 2,
-            Seniors: 1,
-            Youth: 1,
-            Child: 0,
-            SeatInfant: 0,
-            LapInfant: 0
+describe('User test data to search for a flight', () => {
+    flightsData.forEach(({ OriginInput, OriginSelection, DestinationInput, DestinationSelection, Passengers, Departure, Arrival }) => {
+        it('type origin', function () {
+            cy.reload()
+            flightsPage.typeOrigin(OriginInput);
         });
-    });
 
-    it('set departure date and arrival date', function () {
-        const month = "2022-01"
-        const departureDate = 'January 4, 2022'
-        const arrivalDate = 'January 7, 2022'
-        const dateObj = { month: month, departureDate: departureDate, arrivalDate: arrivalDate }
+        it('select single origin', function () {
+            flightsPage.selectSingleOrigin(OriginSelection);
+        })
 
-        flightsPage.openCalendar()
-        flightsPage.selectDateRange(dateObj)
-    });
+        it('type destination', function () {
+            flightsPage.typeDestination(DestinationInput);
+        });
 
-    it('click search button', function () {
-        flightsPage.clickSearchButton();
-    });
+        it('select single destination', function () {
+            flightsPage.selectSingleDestination(DestinationSelection);
+        });
+
+        it('set passengers', function () {
+            flightsPage.setPassengers({
+                Adults: Passengers.Adults,
+                Seniors: Passengers.Seniors,
+                Youth: Passengers.Youth,
+                Child: Passengers.Child,
+                SeatInfant: Passengers.SeatInfant,
+                LapInfant: Passengers.LapInfant
+            });
+        });
+
+        it('set departure date and arrival date', function () {
+            const month = "2022-01"
+            const departureDate = Departure
+            const arrivalDate = Arrival
+            const dateObj = { month: month, departureDate: departureDate, arrivalDate: arrivalDate }
+
+            flightsPage.openCalendar()
+            flightsPage.selectDateRange(dateObj)
+        });
+
+        it('click search button', function () {
+            flightsPage.clickSearchButton();
+        });
+    })
 })
+
+
 describe('Compare rates', function () {
 
     it('rates sections are visible', function () {

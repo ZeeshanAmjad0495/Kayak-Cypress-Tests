@@ -35,7 +35,8 @@ class FlightsPage {
 
     selectSingleDestination(destination) {
         cy.get('.QHyi')
-            .should('contain', destination)
+            .children()
+            .contains(destination)
             .click({ force: true })
     }
 
@@ -94,19 +95,19 @@ class FlightsPage {
         cy.get('span[class="_iM-"]').should('be.visible').and('contain', 'Quickest')
     }
     getBestPrice() {
-        cy.get('.js-price').then(($el) => {
+        cy.get('#PUkJ-bestflight_aTab').children().should('contain', /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$/).then(($el) => {
             const price = $el.text()
             return price
         })
     }
     getCheapestPrice() {
-        cy.get('#ZxNX-price_aTab > ._iKN > .js-sort-tab-row > :nth-child(1) > ._id7 > .js-label').then(($el) => {
+        cy.get('#PUkJ-price_aTab').children().should('contain', /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$/).then(($el) => {
             const price = $el.text()
             return price
         })
     }
     getQuickestDurationPrice() {
-        cy.get('#Tevn-duration_aTab > ._iKN > .js-sort-tab-row > :nth-child(1) > ._id7 > .js-label').then(($el) => {
+        cy.get('#PUkJ-duration_aTab').children().should('contain', /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$/).then(($el) => {
             const price = $el.text()
             return price
         })
